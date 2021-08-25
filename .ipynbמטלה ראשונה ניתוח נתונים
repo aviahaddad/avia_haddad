@@ -1,0 +1,545 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Identify:\n",
+    "\n",
+    "Please fill-in your ID in the following cell, **only id numbers, no names!**\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 233,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "id1 = \"203865779\"\n",
+    "id2 = \"318884624\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 234,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: pandas in c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages (1.3.1)\n",
+      "Requirement already satisfied: pytz>=2017.3 in c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages (from pandas) (2021.1)\n",
+      "Requirement already satisfied: numpy>=1.17.3 in c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages (from pandas) (1.21.1)\n",
+      "Requirement already satisfied: python-dateutil>=2.7.3 in c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages (from pandas) (2.8.2)\n",
+      "Requirement already satisfied: six>=1.5 in c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages (from python-dateutil>=2.7.3->pandas) (1.16.0)\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "WARNING: You are using pip version 21.1.3; however, version 21.2.3 is available.\n",
+      "You should consider upgrading via the 'c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\python.exe -m pip install --upgrade pip' command.\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install pandas\n",
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 239,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "url=\"https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv\"\n",
+    "vacc_df = pd.read_csv(url)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 240,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#df = pd.DataFrame([id1])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Uncomment in case two students are doing the assignment together:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 241,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.DataFrame([\"203865779\",\"318884624\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 242,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>203865779</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>318884624</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "           0\n",
+       "0  203865779\n",
+       "1  318884624"
+      ]
+     },
+     "execution_count": 242,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.to_clipboard(index=False,header=False)\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Please fill your names here:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Noam Berns,\n",
+    "Avia haddad"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Write your answers here\n",
+    "\n",
+    "add as much lines of code and markdown as you need for each answer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Q1 "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 243,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "6739"
+      ]
+     },
+     "execution_count": 243,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from datetime import date\n",
+    "vacc_df[\"date\"]=pd.to_datetime(vacc_df[\"date\"])\n",
+    "vacc_df['month'] = pd.DatetimeIndex(vacc_df.date).month\n",
+    "vacc_df\n",
+    "my_month = vacc_df[vacc_df.month==7]\n",
+    "len(my_month)\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " # Q2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "בחרנו בדרך זו מכיוון שזה הגיוני שיהיו מספר ימים בשנה שבהם לא יחסנו אף אחד. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 248,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "c:\\users\\mikha\\appdata\\local\\programs\\python\\python39\\lib\\site-packages\\pandas\\core\\generic.py:6383: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame\n",
+      "\n",
+      "See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  return self._update_inplace(result)\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_month[\"daily_vaccinations\"].fillna(0, inplace=True)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "בחרנו בדרך זאת מכייון שבחודש הנ\"ל , המודעות לחשיבות חיסוני הקורונה עלתה מאד ולכן מספר האנשים שמגיעים להתחסן הוא יחסית קבוע ולכן בחרנו בדרך זו. \n",
+    "כתבנו במתודה \"bfill\" כיוון שלא היה אפשרי לקחת מהנתון הראשון כי הוא היה nun ולכן על מנת לטפל בערכים החסרים היינו צריכים להתחיל מלמטה."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 249,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\mikha\\AppData\\Local\\Temp/ipykernel_11676/984240543.py:1: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame.\n",
+      "Try using .loc[row_indexer,col_indexer] = value instead\n",
+      "\n",
+      "See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  my_month[\"new_people_vaccinated_per_hundred\"]=my_month[\"people_vaccinated_per_hundred\"].interpolate(method=\"bfill\")\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_month[\"new_people_vaccinated_per_hundred\"]=my_month[\"people_vaccinated_per_hundred\"].interpolate(method=\"bfill\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Q3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 250,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>location</th>\n",
+       "      <th>date</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>7298</th>\n",
+       "      <td>China</td>\n",
+       "      <td>2021-07-01</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     location       date\n",
+       "7298    China 2021-07-01"
+      ]
+     },
+     "execution_count": 250,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_month_contries=my_month[~my_month[\"iso_code\"].str.contains(\"OWID_\")]\n",
+    "max_vaccinations=my_month_contries[\"daily_vaccinations\"].max()\n",
+    "most_vaccinations=my_month_contries.loc[my_month_contries.daily_vaccinations==max_vaccinations]\n",
+    "most_vaccinations[[\"location\",\"date\"]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true,
+    "tags": []
+   },
+   "source": [
+    "# Q4"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "מהנתונים הגיוני שהממוצע יהיה גדול יותר מאשר החציון כיוון שמספר המתחסנים גדל מיום ליום בצורה משמעותית.והממוצע מושפע מזה יותר מאשר החציון."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 251,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The avreag :642295.4300341296\n",
+      "the miedian:9606.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "avreag=my_month['daily_vaccinations'].mean()\n",
+    "median=my_month['daily_vaccinations'].median()\n",
+    "print(\"The avreag :\"+str(avreag))\n",
+    "print(\"the miedian:\"+str(median))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "# Q5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 257,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\mikha\\AppData\\Local\\Temp/ipykernel_11676/2065819374.py:1: UserWarning: Boolean Series key will be reindexed to match DataFrame index.\n",
+      "  isr= my_month[vacc_df.location==\"Israel\"]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "66.19354838709677"
+      ]
+     },
+     "execution_count": 257,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "isr= my_month[vacc_df.location==\"Israel\"]\n",
+    "isr.iloc[0:7]\n",
+    "avr_isr=isr[\"people_vaccinated_per_hundred\"].mean()\n",
+    "avr_isr"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Q6"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 187,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>people_vaccinated_per_hundred</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>location</th>\n",
+       "      <th>month</th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Gibraltar</th>\n",
+       "      <th>7</th>\n",
+       "      <td>116.77</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Pitcairn</th>\n",
+       "      <th>7</th>\n",
+       "      <td>100.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Malta</th>\n",
+       "      <th>7</th>\n",
+       "      <td>90.52</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                 people_vaccinated_per_hundred\n",
+       "location  month                               \n",
+       "Gibraltar 7                             116.77\n",
+       "Pitcairn  7                             100.00\n",
+       "Malta     7                              90.52"
+      ]
+     },
+     "execution_count": 187,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_month_contries=my_month[~my_month[\"iso_code\"].str.contains(\"OWID_\")]\n",
+    "n=my_month_contries.groupby([\"location\",\"month\"])[[\"people_vaccinated_per_hundred\"]].max()\n",
+    "n.nlargest(3,\"people_vaccinated_per_hundred\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Q7"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "# GOOD LUCK !!!!\n",
+    "---"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# do not type below this line"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.6"
+  },
+  "toc-autonumbering": true,
+  "toc-showcode": true,
+  "toc-showmarkdowntxt": true
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
